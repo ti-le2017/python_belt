@@ -18,6 +18,6 @@ from django.contrib import admin
 
 urlpatterns = [
 	url(r'^wishlist/', include('apps.wishlist_app.urls')),
-	url(r'^login/', include('apps.login_app.urls')),
+	url(r'^', include('apps.login_app.urls')),
     url(r'^admin/', admin.site.urls),
 ]

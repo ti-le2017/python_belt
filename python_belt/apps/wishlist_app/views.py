@@ -41,7 +41,7 @@ def process(request):
 #******************** Logout ***************************************
 def logout(request):
 	request.session.clear()
-	return redirect('/login')
+	return redirect('/')
 
 
 #******************** Join *****************************************

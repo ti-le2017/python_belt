@@ -14,7 +14,7 @@ def register(request):
 	if len(errors):
 		for tag, error in errors.iteritems():
 			messages.error(request, error, extra_tags=tag)
-		return redirect('/login')
+		return redirect('/')
 	else:
 		# Create User
 		if request.POST['password'] == request.POST['confirm_password']:
@@ -22,8 +22,8 @@ def register(request):
 		else:
 			print"********************"
 			print "password dont match"
-			return redirect ('/login')
-	return redirect('/login')
+			return redirect ('/')
+	return redirect('/')
 
 
 #***************** Validate Login ********************
@@ -35,7 +35,7 @@ def login(request):
 	else:
 		for tag, error in user_login.iteritems():
 			messages.error(request, error, extra_tags=tag)	#extra_tags remove the key from the dictionary in messages
-		return redirect('/login')
+		return redirect('/')
 
 
 
