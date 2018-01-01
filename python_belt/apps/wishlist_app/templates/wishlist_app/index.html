@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Wish List</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<!-- jQuery library -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<!-- Latest compiled JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+	<body>
+		<div class="container">
+		<button><a href="/wishlist/logout">Log Out</a></button>
+		<h1>Hello, {{ this_user.name }}</h1>
+		<h3>Your Wish List</h3>
+		<table class="table table-striped table-bordered">
+			<thead>
+				<tr>
+					<th>Item</th>
+					<th>Added By</th>
+					<th>Date Added</th>
+					<th>Action</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for obj_item in user_items %}
+				<tr>
+					<td><a href="/wishlist/likes/{{ obj_item.id }}">{{ obj_item.item }}</a></td>
+					<td>{{ obj_item.user.name }}</td>
+					<td>{{ obj_item.created_at }}</td>
+					<td><a href="/wishlist/remove/{{ obj_item.id }}">Remove Item</a> | <a href="/wishlist/delete/{{ obj_item.id }}">Delete Item</a></td>
+				</tr>
+				{% endfor %}
+				{% for obj_item in joined_item %}
+				<tr>
+					<td><a href="/wishlist/likes/{{ obj_item.id }}">{{ obj_item.item }}</a></td>
+					<td>{{ obj_item.user.name }}</td>
+					<td>{{ obj_item.created_at }}</td>
+					<td><a href="/wishlist/remove/{{ obj_item.id }}">Remove from list</a> | <a href="/wishlist/delete/{{ obj_item.id }}">Delete Item</a></td>
+				</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+		<br>
+		<h3>Other Users' wish List</h3>
+		<table class="table table-striped table-bordered">
+			<thead>
+				<tr>
+					<th>Item</th>
+					<th>Added By</th>
+					<th>Date Added</th>
+					<th>Action</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for item_obj in all_user %}
+				<tr>
+					<td><a href="/wishlist/likes/{{ item_obj.id }}">{{ item_obj.item }}</a></td>
+					<td>{{ item_obj.user.name }}</td>
+					<td>{{ item_obj.created_at }}</td>
+					<td><a href="/wishlist/join/{{ item_obj.id }}">Add to my wish list</a></td>
+				</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+		<button><a href="/wishlist/add">Add Item</a></button>
+
+		</div>
+	</body>
+</html>

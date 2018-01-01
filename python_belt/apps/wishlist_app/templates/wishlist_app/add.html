@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Add a Trip</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<!-- jQuery library -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<!-- Latest compiled JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+	{% if messages %}
+		<ul class="messages">
+		{% for message in messages %}
+			<li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+		{% endfor %}
+		</ul>
+	{% endif %}	
+	<div class="container">
+		<p><button><a href="/wishlist">Home</a></button> | <button><a href="/wishlist/logout">Sign Out</a></button></p>
+		<h1>Add to wishlist</h1>
+		<form action="/wishlist/process" method="POST">
+			{% csrf_token %}
+			<label class=".control-label col-sm-2" for="item">Add an item:</label><input type="text" name="item">
+			<p></p>
+			<button class="col-sm-offset-2">Add</button>			
+		</form>
+	</div>
+</body>
+</html>
